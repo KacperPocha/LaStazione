@@ -141,10 +141,10 @@ const scrollToTop = () =>{
             </button>
             <button className="w-[277px] bg-[#343434] rounded-full text-white ">
               <div className="flex justify-center">
-                <div className="text-[18px] mt-2">
+                <a className="text-[18px] mt-2" href="tel:+48 527 172 27">
                   <p className="font-black">ZADZWOŃ</p>
                   <p className="">+48 527 172 272</p>
-                </div>
+                </a>
               </div>
             </button>
           </div>
