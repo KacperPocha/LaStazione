@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TopSection from "./Images/TopSection.svg";
 import Logo from "./Images/Logo.svg";
 import Pysznepl from "./Images/Pysznepl.svg";
@@ -10,17 +10,22 @@ import Telephone from "./Images/Telephone.svg";
 import FB from "./Images/fb.svg";
 import ButtonPyszne from "./Images/ButtonPyszne.svg";
 import { useNavigate } from "react-router-dom";
+import { Loading } from "./Loading";
 
 export const MainPage = () => {
-    const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
-const scrollToTop = () =>{
+  const scrollToTop = () => {
     window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    })
-}
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
+  window.onload = function() {
+    window.scrollTo(0, 0);
+  };
 
   const Triangle = ({ color = "brown" }) => {
     return (
@@ -69,6 +74,9 @@ const scrollToTop = () =>{
       </div>
     );
   };
+
+
+
   return (
     <div className="font-inter">
       {/*SEKCJA GÓRNA*/}
@@ -84,7 +92,7 @@ const scrollToTop = () =>{
 
       {/*SEKCJA POWITALNA*/}
       <div className="mx-auto max-w-7xl grid grid-cols-3 place-items-center mt-16 mb-16">
-        <div className="col-span-2 mr-8">
+        <div className="col-span-2 mr-24">
           <div>
             <h1 className="text-[40px] font-black">
               Witaj w Pizzerii La Stazione
@@ -92,39 +100,21 @@ const scrollToTop = () =>{
           </div>
           <div>
             <h2 className="text-[22px] font-semibold mb-6">
-              Jeśli jesteś z Międzyrzecza lub okolic i szukasz miejsca, gdzie
-              można zjeść wyśmienitą pizzę to DOBRZE TRAFIŁEŚ!
+              Jeśli jesteś z Międzyrzecza lub okolic i szukasz wyśmienitej pizzy
+              to DOBRZE TRAFIŁEŚ!
             </h2>
           </div>
           <div className="text-[16px] leading-[21px]">
-            <p>W naszym lokalu możesz być pewien, że:</p>
-            <ul className="list-disc">
-              <div className="ml-12">
-                <li>
-                  Zjesz pyszną pizzę prosto z pieca, przygotowaną ze świeżych i
-                  lokalnych produktów
-                </li>
-                <li>
-                  Zostaniesz obsłużony po królewsku - szybko oraz z należytym
-                  szacunkiem i uśmiechem
-                </li>
-                <li>
-                  Będziesz mógł się zrelaksować ze znajomymi i rodziną w miłej
-                  atmosferze
-                </li>
-                <li>
-                  Wyjdziesz usatysafakcjonowany, zadowolony i co najważniejsze z
-                  pełnym brzuchem
-                </li>
-              </div>
-            </ul>
+            <p>
+              W naszym lokalu możesz być pewien, że zjesz pyszną pizze prosto z
+              pieca, przygotowaną ze świeżych i lokalnych produktów
+            </p>
           </div>
           <div className="text-[12px] mt-8">
             <p className="break-normal">
               Zapraszamy do składania zamówień telefonicznie albo przez stronę
-              pyszne.pl. Najlepszym wyborem będzie jednak udanie się do naszego
-              lokalu, aby w pełni poczuć klimat tego miejsca. Zapewniamy wygodny
-              dojazd i parking przed restauracją.
+              pyszne.pl. Jesteśmy restauracją "Take away", czyli oferujemy pizzę
+              na wynos. Możliwy dowóż lub odbiór osobisty
             </p>
           </div>
           <div className="text-[20px] mt-4 mb-8 font-bold">
@@ -133,7 +123,13 @@ const scrollToTop = () =>{
           <div>
             <button className="w-[277px] bg-[#343434] rounded-full text-white mr-16">
               <div className="flex justify-center">
-                <button onClick={()=> window.open('https://www.pyszne.pl/menu/la-stazione-miliardowicka?&adj_tracker=5rz7oa4&adj_campaign=11848902408&k1111=k1111&campaignname=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&utm_source=google&utm_medium=cpc&utm_campaign=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&gad_source=1&gclid=Cj0KCQjw_qexBhCoARIsAFgBleu74yA_LEE7YpfucIw4rgcRzguOmxXQ1Ry3e02gSw3wyUBv15VI70MaAmaJEALw_wcB&gclsrc=aw.ds')}>
+                <button
+                  onClick={() =>
+                    window.open(
+                      "https://www.pyszne.pl/menu/la-stazione-miliardowicka?&adj_tracker=5rz7oa4&adj_campaign=11848902408&k1111=k1111&campaignname=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&utm_source=google&utm_medium=cpc&utm_campaign=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&gad_source=1&gclid=Cj0KCQjw_qexBhCoARIsAFgBleu74yA_LEE7YpfucIw4rgcRzguOmxXQ1Ry3e02gSw3wyUBv15VI70MaAmaJEALw_wcB&gclsrc=aw.ds"
+                    )
+                  }
+                >
                   <p className="text-[14px] font-black mt-2">ZAMÓW ONLINE</p>
                   <img src={Pysznepl} alt="pysznepl" className="mb-2 ml-2" />
                 </button>
@@ -174,7 +170,12 @@ const scrollToTop = () =>{
                 </div>
               </div>
               <div>
-                <button className="bg-white rounded-full text-[28px] font-black text-center text-black ml-20" onClick={() => {navigate("/menu")}} >
+                <button
+                  className="bg-white rounded-full text-[28px] font-black text-center text-black ml-20"
+                  onClick={() => {
+                    navigate("/menu");
+                  }}
+                >
                   <p className="m-4 ml-12 mr-12">SPRAWDŹ NASZE MENU</p>
                 </button>
               </div>
@@ -214,17 +215,40 @@ const scrollToTop = () =>{
             niedziela:<p className="ml-2 font-normal">14:00 - 21:00</p>
           </p>
         </div>
-        <img src={mapa} alt="mapa" />
+        <iframe
+          width="420"
+          height="420"
+          frameborder="0"
+          scrolling="no"
+          marginheight="0"
+          marginwidth="0"
+          id="gmap_canvas"
+          src="https://maps.google.com/maps?width=420&amp;height=420&amp;hl=en&amp;q=49.852661053129836,%2018.943839352858117+(Pizzeria%20La%20Stazione)&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+        ></iframe>{" "}
+        <a href="http://maps-generator.com/pl"></a>{" "}
+        <script
+          type="text/javascript"
+          src="https://embedmaps.com/google-maps-authorization/script.js?id=78c3253a5ac6b608b069475bf942026e71e3971a"
+        ></script>
       </div>
 
       {/*STOPKA*/}
       <footer className="bg-[#343434] grid grid-cols-3 text-white ">
         <div className="col-1 font-thin ml-24 mt-4">
-          <p className="mb-4 cursor-pointer" onClick={scrollToTop}>strona główna</p>
-          <p className="cursor-pointer" onClick={() => navigate('/menu')}>menu</p>
+          <p className="mb-4 cursor-pointer" onClick={scrollToTop}>
+            strona główna
+          </p>
+          <p className="cursor-pointer" onClick={() => navigate("/menu")}>
+            menu
+          </p>
         </div>
         <div className="col-1 flex flex-col text-center">
-          <img src={footerLogo} alt="logo" className="mb-4 mt-4 h-32 cursor-pointer" onClick={scrollToTop} />
+          <img
+            src={footerLogo}
+            alt="logo"
+            className="mb-4 mt-4 h-32 cursor-pointer"
+            onClick={scrollToTop}
+          />
           <p className="mb-4 text-[10px]">
             COPYRIGHT 2024 © ALL RIGHTS RESERVED.
           </p>
@@ -242,10 +266,20 @@ const scrollToTop = () =>{
             </p>
           </div>
           <div className="flex ml-12 mt-2">
-            <button onClick={()=> window.open('https://www.pyszne.pl/menu/la-stazione-miliardowicka?&adj_tracker=5rz7oa4&adj_campaign=11848902408&k1111=k1111&campaignname=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&utm_source=google&utm_medium=cpc&utm_campaign=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&gad_source=1&gclid=Cj0KCQjw_qexBhCoARIsAFgBleu74yA_LEE7YpfucIw4rgcRzguOmxXQ1Ry3e02gSw3wyUBv15VI70MaAmaJEALw_wcB&gclsrc=aw.ds')}>
+            <button
+              onClick={() =>
+                window.open(
+                  "https://www.pyszne.pl/menu/la-stazione-miliardowicka?&adj_tracker=5rz7oa4&adj_campaign=11848902408&k1111=k1111&campaignname=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&utm_source=google&utm_medium=cpc&utm_campaign=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&gad_source=1&gclid=Cj0KCQjw_qexBhCoARIsAFgBleu74yA_LEE7YpfucIw4rgcRzguOmxXQ1Ry3e02gSw3wyUBv15VI70MaAmaJEALw_wcB&gclsrc=aw.ds"
+                )
+              }
+            >
               <img src={ButtonPyszne} alt="przycisk pyszne.pl" />
             </button>
-            <button onClick={() => window.open('https://www.facebook.com/pizzerialastazion')}>
+            <button
+              onClick={() =>
+                window.open("https://www.facebook.com/pizzerialastazion")
+              }
+            >
               <img src={FB} alt="facebook" className="ml-10" />
             </button>
           </div>
