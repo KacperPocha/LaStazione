@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingPizza from "./dist/assets/LoadingPizza.png";
+import LoadingPizza from "./Images/LoadingPizza.png";
 
 export const Loading = () => {
     return (
