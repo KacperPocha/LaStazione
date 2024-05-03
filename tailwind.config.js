@@ -11,9 +11,9 @@ export default {
       }
     },
     screens: {
-      'sm': '360px',
-      'md': '601px',
-      'l': '1280px',
+      'sm': {'max':'780px'},
+      'md': {'min': '781px' ,'max':'1280px'},
+      'l': {'min': '1281px' ,'max':'1600px'},
       'xl': '1600px'
     },
     animation: {

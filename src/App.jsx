@@ -5,7 +5,7 @@ import { MenuPage } from "./MenuPage";
 function App() {
   return (
         <Routes>
-          <Route path="/" element={<MainPage/>}/>
+          <Route path="/LaStazione/" element={<MainPage/>}/>
           <Route path="/menu" element={<MenuPage/>}/>
         </Routes>
   );

@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from "react";
-import TopSection from "./Images/TopSection.svg";
+import TopSection from "./Images/TopSection.png";
 import Logo from "./Images/Logo.svg";
 import Pysznepl from "./Images/Pysznepl.svg";
-import WelcomeImage from "./Images/WelcomeImage.svg";
-import MenuSection from "./Images/MenuSection.svg";
-import mapa from "./Images/3.svg";
+import WelcomeImage from "./Images/WelcomeImage.png";
+import MenuSection from "./Images/MenuSection.png";
 import footerLogo from "./Images/footerLogo.svg";
 import Telephone from "./Images/Telephone.svg";
 import FB from "./Images/fb.svg";
 import ButtonPyszne from "./Images/ButtonPyszne.svg";
 import { useNavigate } from "react-router-dom";
-import { Loading } from "./Loading";
+
 
 export const MainPage = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const scrollToTop = () => {
@@ -23,9 +20,7 @@ export const MainPage = () => {
     });
   };
 
-  window.onload = function() {
-    window.scrollTo(0, 0);
-  };
+  console.log("test");
 
   const Triangle = ({ color = "brown" }) => {
     return (
@@ -75,18 +70,16 @@ export const MainPage = () => {
     );
   };
 
-
-
   return (
     <div className="font-inter">
       {/*SEKCJA GÓRNA*/}
       <div>
-        <img src={TopSection} alt="PizzaPhoto" className="w-screen"></img>
+        <img src={TopSection} alt="PizzaPhoto" className="w-screen  z-10"></img>
 
         <img
           src={Logo}
           alt="Logo"
-          className="absolute top-[15%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute top-[25%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
       </div>
 
