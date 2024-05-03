@@ -79,15 +79,15 @@ export const MainPage = () => {
         <img
           src={Logo}
           alt="Logo"
-          className="absolute top-[25%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute sm:w-[20%] md:w-[20%] sm:top-[10%] md:top-[20%] l:top-[22%] xl:top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
       </div>
 
       {/*SEKCJA POWITALNA*/}
-      <div className="mx-auto max-w-7xl grid grid-cols-3 place-items-center mt-16 mb-16">
+      <div className="grid sm:text-center l:grid-cols-3 mt-16 mb-16">
         <div className="col-span-2 mr-24">
           <div>
-            <h1 className="text-[40px] font-black">
+            <h1 className="text-[40px] font-black sm:mb-4">
               Witaj w Pizzerii La Stazione
             </h1>
           </div>
@@ -114,7 +114,7 @@ export const MainPage = () => {
             <p>Do zobaczenia!</p>
           </div>
           <div>
-            <button className="w-[277px] bg-[#343434] rounded-full text-white mr-16">
+            <button className="w-[277px] bg-[#343434] rounded-full text-white l:mr-16 sm:mb-4">
               <div className="flex justify-center">
                 <button
                   onClick={() =>
@@ -128,7 +128,7 @@ export const MainPage = () => {
                 </button>
               </div>
             </button>
-            <button className="w-[277px] bg-[#343434] rounded-full text-white ">
+            <button className="w-[277px] bg-[#343434] rounded-full text-white sm:mb-8">
               <div className="flex justify-center">
                 <a className="text-[18px] mt-2" href="tel:+48 527 172 27">
                   <p className="font-black">ZADZWOŃ</p>
