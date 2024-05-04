@@ -142,7 +142,7 @@ export const MainPage = () => {
     <div>
   <TriangleRow color="#343434" triangleCount={47} />
   <div className="bg-[#343434] flex justify-center align-center text-white mb-[-2px] mt-[-2px]">
-    <div className="flex flex-col justify-center items-center mt-24 mb-14">
+    <div className="flex sm:flex-col md:flex-col justify-center items-center mt-24 mb-14">
       <div className="text-center mb-8">
         <h1 className="sm:text-[30px] md:text-[36px] l:text-[36px] xl:text-[36px] font-extrabold">
           Koniecznie sprawdź nasze menu!
@@ -164,7 +164,7 @@ export const MainPage = () => {
       <img
         src={MenuSection}
         alt="Menu Section Image"
-        className="w-full sm:max-w-sm md:max-w-lg lg:max-w-lg xl:max-w-xl mx-auto" // Dodano marginesy po bokach tylko dla ekranów o szerokości >=640px
+        className="w-full sm:max-w-sm md:max-w-lg lg:max-w-lg xl:max-w-xl mx-auto l:ml-14 xl:ml-14" // Dodano marginesy po bokach tylko dla ekranów o szerokości >=640px
       />
     </div>
   </div>
