@@ -3,9 +3,9 @@ import MenuTopSection from "./Images/MenuTopSection.png";
 import Logo from "./Images/Logo.svg";
 import PyszneMenu from "./Images/PyszneMenu.svg";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchPizza } from "./API/Posts";
+import { fetchPizza, fetchToppings } from "./API/Posts";
 import footerLogo from "./Images/LogoDark.svg";
-import Telephone from "./Images/Telephone.svg";
+import Telephone from "./Images/Telefon.svg";
 import FB from "./Images/FBDark.svg";
 import ButtonPyszne from "./Images/PysznePLDark.svg";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,19 @@ export const MenuPage = () => {
     queryFn: () => fetchPizza(),
   });
 
+  const postToppings = useQuery({
+    queryKey: ["topping"],
+    queryFn: () => fetchToppings(),
+  });
+
+  if (postToppings.isLoading) {
+    return <Loading />;
+  }
+
+  if (postToppings.isError) {
+    return <div>error</div>;
+  }
+
   if (postQuery.isLoading) {
     return <Loading />;
   }
@@ -28,6 +41,7 @@ export const MenuPage = () => {
     return <div>error</div>;
   }
 
+  const dataToppings = postToppings.data.data;
   const data = postQuery.data.data;
 
   const scrollToTop = () => {
@@ -83,11 +97,11 @@ export const MenuPage = () => {
           <div className="text-white mt-8 flex sm:flex-col md:flex-row md:ml-6 l:ml-20">
             <a
               href="tel:+48 572 172 272"
-              className="sm:text-[25px] md:text-[32px] font-semibold bg-[#343434] sm:mr-8 sm:ml-8 md:pt-4 md:pb-4 md:pl-4 md:pr-4 md:mr-12 l:pt-4 l:pb-4 l:pl-4 l:pr-4 l:mr-2 xl:pt-4 xl:pl-4 xl:pr-4 xl:mr-2 xl:ml-8 rounded-full "
+              className="sm:text-[25px] md:text-[32px] font-semibold bg-[#343434] sm:mr-12 sm:ml-12 md:pt-4 md:pb-4 md:pl-4 md:pr-4 md:mr-12 l:pt-4 l:pb-4 l:pl-4 l:pr-4 l:mr-2 xl:pt-4 xl:pl-4 xl:pr-4 xl:mr-2 xl:ml-8 rounded-full "
             >
               +48 572 172 272
             </a>
-            <button className="bg-[#343434] rounded-full sm:flex sm:justify-center md:w-[45%] l:w-[45%] xl:w-[45%] sm:mt-4 sm:mr-8 sm:ml-8 md:pt-3 md:pl-6 md:pr-6 md:ml-3 md:pb-2 l:pt-3 l:pl-6 l:pr-6 l:ml-3 l:pb-2 xl:pt-3 xl:pl-6 xl:pr-6 xl:ml-3 xl:pb-3">
+            <button className="bg-[#343434] rounded-full sm:flex sm:justify-center md:w-[45%] l:w-[45%] xl:w-[45%] sm:mt-4 sm:mr-12 sm:ml-12 md:pt-3 md:pl-6 md:pr-6 md:ml-3 md:pb-2 l:pt-3 l:pl-6 l:pr-6 l:ml-3 l:pb-2 xl:pt-3 xl:pl-6 xl:pr-6 xl:ml-3 xl:pb-3">
               <img
                 src={PyszneMenu}
                 alt="pysznepl"
@@ -124,7 +138,9 @@ export const MenuPage = () => {
                         className="w-full" // Ensures the image fills the container width
                       />
                     </div>
-                    <div className="text-left mt-4 w-full ml-2">
+                    <div className="text-left mt-4 w-full ml-2 min-h-[90px]">
+                      {" "}
+                      {/* Zastosowano minimalną wysokość */}
                       <h1 className="text-[28px] mb-[-4px] font-black">
                         {pizza.attributes.name}
                       </h1>
@@ -133,21 +149,26 @@ export const MenuPage = () => {
                       </p>
                     </div>
                     <div className="w-[110%] grid grid-cols-3 text-center">
-
                       <div>
-                        <p className="sm:text-[14px] md:text-[16px] l:text-[20px] xl:text-[20px] font-thin mb-[-4px]">32 cm</p>
+                        <p className="sm:text-[14px] md:text-[16px] l:text-[20px] xl:text-[20px] font-thin mb-[-4px]">
+                          32 cm
+                        </p>
                         <p className="sm:text-[22px] md:text-[28px] l:text-[32px] xl:text-[32px]">
                           {pizza.attributes.priceSmall} zł
                         </p>
                       </div>
-                      <div className="border-r-2 border-l-2 sm:px-4 md:px-8">
-                        <p className="sm:text-[14px] md:text-[16px] l:text-[20px] xl:text-[20px] font-thin mb-[-4px]">32 cm</p>
+                      <div className="border-r-2 border-l-2 sm:px-4 md:px-6">
+                        <p className="sm:text-[14px] md:text-[16px] l:text-[20px] xl:text-[20px] font-thin mb-[-4px]">
+                          45 cm
+                        </p>
                         <p className="sm:text-[22px] md:text-[28px] l:text-[32px] xl:text-[32px]">
                           {pizza.attributes.priceMedium} zł
                         </p>
                       </div>
                       <div>
-                        <p className="sm:text-[14px] md:text-[16px] l:text-[20px] xl:text-[20px] font-thin mb-[-4px]">32 cm</p>
+                        <p className="sm:text-[14px] md:text-[16px] l:text-[20px] xl:text-[20px] font-thin mb-[-4px]">
+                          60 cm
+                        </p>
                         <p className="sm:text-[22px] md:text-[28px] l:text-[32px] xl:text-[32px]">
                           {pizza.attributes.priceBig} zł
                         </p>
@@ -158,6 +179,7 @@ export const MenuPage = () => {
               );
             })}
           </ul>
+
           {/*SEKCJA NAPOJE I DODATKI */}
           <div className="mt-24 grid sm:grid-cols-1 md:grid-cols-2 l:grid-cols-2 xl:grid-cols-2 mx-auto mb-12">
             <div className="bg-white col-span-1 sm:mb-4 sm:m-2 md:mr-5 md:ml-12 l:ml-12 l:mr-12 xl:ml-64 xl:mr-24 rounded-3xl overflow-hidden">
@@ -168,28 +190,42 @@ export const MenuPage = () => {
                 <div className="px-6 mt-4">
                   <div className="flex justify-between">
                     <div>
-                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-8px]">sosy:</p>
+                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-8px]">
+                        sosy:
+                      </p>
                       <p className="sm:text-[10px] md:text-[11px] l:text-[16px] mb-2">
                         pomidorowy, czosnkowy, meksykański
                       </p>
                     </div>
                     <div>
-                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">3 zł</p>
+                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
+                        {dataToppings[0].attributes.sos}
+                      </p>
                     </div>
                   </div>
                   <div className="flex justify-between">
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">dodatek serowy</p>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">8/10/14 zł</p>
+                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
+                      dodatek serowy
+                    </p>
+                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
+                      {dataToppings[0].attributes.cheese}
+                    </p>
                   </div>
                   <div className="flex justify-between">
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">dodatek mięsny</p>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">6/8/9 zł</p>
+                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
+                      dodatek mięsny
+                    </p>
+                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
+                      {dataToppings[0].attributes.meat}
+                    </p>
                   </div>
                   <div className="flex justify-between">
                     <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-8">
                       dodatek warzywny
                     </p>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">6/7/8 zł</p>
+                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
+                      {dataToppings[0].attributes.vegetables}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -206,10 +242,14 @@ export const MenuPage = () => {
                       <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-8px]">
                         Kropla beskidu
                       </p>
-                      <p className="sm:text-[10px] md:text-[11px] l:text-[16px] mb-2">gazowania/niegazowana</p>
+                      <p className="sm:text-[10px] md:text-[11px] l:text-[16px] mb-2">
+                        gazowania/niegazowana
+                      </p>
                     </div>
                     <div>
-                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">6 zł</p>
+                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
+                        {dataToppings[0].attributes.water}
+                      </p>
                     </div>
                   </div>
                   <div className="flex justify-between">
@@ -217,19 +257,31 @@ export const MenuPage = () => {
                       <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-8px]">
                         Coca-Cola
                       </p>
-                      <p className="sm:text-[10px] md:text-[11px] l:text-[16px]">500ml/850ml</p>
+                      <p className="sm:text-[10px] md:text-[11px] l:text-[16px]">
+                        500ml/850ml
+                      </p>
                     </div>
                     <div>
-                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">7/10 zł</p>
+                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
+                        {dataToppings[0].attributes.cola}
+                      </p>
                     </div>
                   </div>
                   <div className="flex justify-between">
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">Fanta</p>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">7 zł</p>
+                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
+                      Fanta
+                    </p>
+                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
+                      {dataToppings[0].attributes.fanta}
+                    </p>
                   </div>
                   <div className="flex justify-between">
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-8">Sprite</p>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">7 zł</p>
+                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-8">
+                      Sprite
+                    </p>
+                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
+                      {dataToppings[0].attributes.sprite}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -241,7 +293,10 @@ export const MenuPage = () => {
       {/*STOPKA*/}
       <footer className="grid sm:text-center sm:grid-cols-1 md:grid-cols-3 l:grid-cols-3 xl:grid-cols-3 text-black ">
         <div className="col-1 font-thin md:ml-10 l:ml-10 xl:ml-12 mt-4">
-          <p className="mb-4 cursor-pointer" onClick={() => navigate("/LaStazione/")}>
+          <p
+            className="mb-4 cursor-pointer"
+            onClick={() => navigate("/LaStazione/")}
+          >
             strona główna
           </p>
           <p className="cursor-pointer sm:mb-4" onClick={scrollToTop}>
@@ -262,7 +317,9 @@ export const MenuPage = () => {
         <div className="col-1 flex flex-col mt-8 md:ml-10 l:ml-36 xl:ml-56">
           <div className="flex sm:justify-center">
             <a className="flex" href="tel:+48 572 172 272">
-              <h1 className="md:text-[24px] l:text-[32px] xl:text-[32px]">+48 572 172 272</h1>
+              <h1 className="md:text-[24px] l:text-[32px] xl:text-[32px]">
+                +48 572 172 272
+              </h1>
             </a>
           </div>
           <div>
