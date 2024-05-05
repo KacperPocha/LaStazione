@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Loading } from "./Loading";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchPizza, fetchToppings } from "./API/Posts";
-import React from "react";
+import React, { useMemo } from "react";
 import MenuTopSection from "./Images/MenuTopSection.png";
 import Logo from "./Images/Logo.svg";
 import PyszneMenu from "./Images/PyszneMenu.svg";
@@ -87,7 +87,7 @@ export const MenuPage = () => {
       </div>
 
       {/*SEKCJA ZAMÓWIENIA */}
-      <div className="sm:text-[30px] md:text-[35px] l:text-[35px] xl:text-[40px] font-semibold leading-[55px] flex justify-center text-center mt-24 mb-24 ml-2 mr-2">
+      <div className="sm:text-[25px] md:text-[35px] l:text-[35px] xl:text-[40px] font-semibold leading-[55px] flex justify-center text-center mt-24 mb-24 ml-2 mr-2">
         <div>
           <div>
             <p>Zapraszamy do składania zamówień</p>
@@ -96,7 +96,7 @@ export const MenuPage = () => {
           <div className="text-white mt-8 flex sm:flex-col sm:items-center md:flex-row md:ml-6 l:ml-20">
             <a
               href="tel:+48 572 172 272"
-              className="sm:text-[25px] md:text-[32px] font-semibold bg-[#343434] sm:pt-2 sm:pb-2 sm:pl-11 sm:pr-11 md:pt-4 md:pb-4 md:pl-4 md:pr-4 md:mr-12 l:pt-4 l:pb-4 l:pl-4 l:pr-4 l:mr-2 xl:pt-4 xl:pl-4 xl:pr-4 xl:mr-2 xl:ml-8 rounded-full "
+              className="sm:text-[20px] md:text-[32px] font-semibold bg-[#343434] sm:pt-2 sm:pb-2 sm:pl-11 sm:pr-11 md:pt-4 md:pb-4 md:pl-4 md:pr-4 md:mr-12 l:pt-4 l:pb-4 l:pl-4 l:pr-4 l:mr-2 xl:pt-4 xl:pl-4 xl:pr-4 xl:mr-2 xl:ml-8 rounded-full "
             >
               +48 572 172 272
             </a>
@@ -111,7 +111,7 @@ export const MenuPage = () => {
               <img
                 src={PyszneMenu}
                 alt="pysznepl"
-                className="md:pr-8 md:pl-8 md:h-14 l:pr-8 l:pl-8 xl:pr-8 xl:pl-8 md:h-14 md:w-[100%] sm:w-[50%] sm:pb-2 sm:pt-2 "
+                className="md:pr-8 md:pl-8 md:h-14 l:pr-8 l:pl-8 xl:pr-8 xl:pl-8 md:h-14 md:w-[100%] sm:w-[60%] sm:pb-2 sm:pt-2 "
               />
             </div>
           </div>

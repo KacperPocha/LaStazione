@@ -183,7 +183,7 @@ export const MainPage = () => {
           </h2>
 
 
-          <div className="flex justify-between sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+          <div className="text-center flex justify-between sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
             <p>poniedziałek - środa:</p>
             <p className="font-normal">nieczynne</p>
           </div>
