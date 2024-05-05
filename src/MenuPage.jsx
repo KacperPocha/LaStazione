@@ -1,15 +1,14 @@
+import { useNavigate } from "react-router-dom";
+import { Loading } from "./Loading";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { fetchPizza, fetchToppings } from "./API/Posts";
 import React from "react";
 import MenuTopSection from "./Images/MenuTopSection.png";
 import Logo from "./Images/Logo.svg";
 import PyszneMenu from "./Images/PyszneMenu.svg";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchPizza, fetchToppings } from "./API/Posts";
 import footerLogo from "./Images/LogoDark.svg";
-import Telephone from "./Images/Telefon.svg";
 import FB from "./Images/FBDark.svg";
 import ButtonPyszne from "./Images/PysznePLDark.svg";
-import { useNavigate } from "react-router-dom";
-import { Loading } from "./Loading";
 
 export const MenuPage = () => {
   const navigate = useNavigate();
@@ -51,29 +50,29 @@ export const MenuPage = () => {
     });
   };
 
-  const Triangle = ({ color = "brown" }) => {
+  const Triangle = React.memo(({ color = "brown" }) => {
     return (
       <div
         style={{
           flexGrow: 1,
-          width: 0, // Początkowa szerokość może być ustawiona na 0
-          paddingBottom: "1.5%", // Kontroluje wysokość trójkąta
+          width: 0,
+          paddingBottom: "1.5%",
           background: color,
           clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
         }}
       />
     );
-  };
+  });
 
-  const TriangleRow = ({ color, triangleCount = 50 }) => {
-    return (
-      <div style={{ display: "flex", width: "100%" }}>
-        {Array.from({ length: triangleCount }).map((_, index) => (
-          <Triangle key={index} color={color} />
-        ))}
-      </div>
-    );
-  };
+  const TriangleRow = React.memo(({ color, triangleCount = 50 }) => {
+    const triangles = useMemo(() => {
+      return Array.from({ length: triangleCount }).map((_, index) => (
+        <Triangle key={index} color={color} />
+      ));
+    }, [color, triangleCount]);
+
+    return <div style={{ display: "flex", width: "100%" }}>{triangles}</div>;
+  });
 
   return (
     <div className="font-inter">
@@ -88,31 +87,33 @@ export const MenuPage = () => {
       </div>
 
       {/*SEKCJA ZAMÓWIENIA */}
-      <div className="sm:text-[20px] md:text-[35px] l:text-[35px] xl:text-[40px] font-semibold leading-[55px] flex justify-center text-center mt-24 mb-24 ml-2 mr-2">
+      <div className="sm:text-[30px] md:text-[35px] l:text-[35px] xl:text-[40px] font-semibold leading-[55px] flex justify-center text-center mt-24 mb-24 ml-2 mr-2">
         <div>
           <div>
             <p>Zapraszamy do składania zamówień</p>
             <p>telefonicznie albo przez stronę pyszne.pl</p>
           </div>
-          <div className="text-white mt-8 flex sm:flex-col md:flex-row md:ml-6 l:ml-20">
+          <div className="text-white mt-8 flex sm:flex-col sm:items-center md:flex-row md:ml-6 l:ml-20">
             <a
               href="tel:+48 572 172 272"
-              className="sm:text-[25px] md:text-[32px] font-semibold bg-[#343434] sm:mr-12 sm:ml-12 md:pt-4 md:pb-4 md:pl-4 md:pr-4 md:mr-12 l:pt-4 l:pb-4 l:pl-4 l:pr-4 l:mr-2 xl:pt-4 xl:pl-4 xl:pr-4 xl:mr-2 xl:ml-8 rounded-full "
+              className="sm:text-[25px] md:text-[32px] font-semibold bg-[#343434] sm:pt-2 sm:pb-2 sm:pl-11 sm:pr-11 md:pt-4 md:pb-4 md:pl-4 md:pr-4 md:mr-12 l:pt-4 l:pb-4 l:pl-4 l:pr-4 l:mr-2 xl:pt-4 xl:pl-4 xl:pr-4 xl:mr-2 xl:ml-8 rounded-full "
             >
               +48 572 172 272
             </a>
-            <button className="bg-[#343434] rounded-full sm:flex sm:justify-center md:w-[45%] l:w-[45%] xl:w-[45%] sm:mt-4 sm:mr-12 sm:ml-12 md:pt-3 md:pl-6 md:pr-6 md:ml-3 md:pb-2 l:pt-3 l:pl-6 l:pr-6 l:ml-3 l:pb-2 xl:pt-3 xl:pl-6 xl:pr-6 xl:ml-3 xl:pb-3">
+            <div
+              className="bg-[#343434] rounded-full sm:flex sm:justify-center sm:w-[50%] md:w-[45%] l:w-[45%] xl:w-[45%] sm:mt-4 sm:pt-2 sm:pb-2 md:pt-3 md:pl-6 md:pr-6 md:ml-3 md:pb-2 l:pt-3 l:pl-6 l:pr-6 l:ml-3 l:pb-2 xl:pt-3 xl:pl-6 xl:pr-6 xl:ml-3 xl:pb-3"
+              onClick={() =>
+                window.open(
+                  "https://www.pyszne.pl/menu/la-stazione-miliardowicka?&adj_tracker=5rz7oa4&adj_campaign=11848902408&k1111=k1111&campaignname=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&utm_source=google&utm_medium=cpc&utm_campaign=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&gad_source=1&gclid=Cj0KCQjw_qexBhCoARIsAFgBleu74yA_LEE7YpfucIw4rgcRzguOmxXQ1Ry3e02gSw3wyUBv15VI70MaAmaJEALw_wcB&gclsrc=aw.ds"
+                )
+              }
+            >
               <img
                 src={PyszneMenu}
                 alt="pysznepl"
-                onClick={() =>
-                  window.open(
-                    "https://www.pyszne.pl/menu/la-stazione-miliardowicka?&adj_tracker=5rz7oa4&adj_campaign=11848902408&k1111=k1111&campaignname=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&utm_source=google&utm_medium=cpc&utm_campaign=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&gad_source=1&gclid=Cj0KCQjw_qexBhCoARIsAFgBleu74yA_LEE7YpfucIw4rgcRzguOmxXQ1Ry3e02gSw3wyUBv15VI70MaAmaJEALw_wcB&gclsrc=aw.ds"
-                  )
-                }
                 className="md:pr-8 md:pl-8 md:h-14 l:pr-8 l:pl-8 xl:pr-8 xl:pl-8 md:h-14 md:w-[100%] sm:w-[50%] sm:pb-2 sm:pt-2 "
               />
-            </button>
+            </div>
           </div>
         </div>
       </div>
@@ -135,12 +136,10 @@ export const MenuPage = () => {
                       <img
                         src={`https://strapi.krysta.dev${pizza.attributes.photo.data.attributes.url}`}
                         alt="pizza"
-                        className="w-full" // Ensures the image fills the container width
+                        className="w-full"
                       />
                     </div>
                     <div className="text-left mt-4 w-full ml-2 min-h-[90px]">
-                      {" "}
-                      {/* Zastosowano minimalną wysokość */}
                       <h1 className="text-[28px] mb-[-4px] font-black">
                         {pizza.attributes.name}
                       </h1>
