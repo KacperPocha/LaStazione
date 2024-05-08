@@ -11,6 +11,7 @@ import Telephone from "./Images/Telephone.svg";
 import React, { useMemo } from "react";
 import { fetchHours } from "./API/Posts";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Loading } from "./Loading";
 
 export const MainPage = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export const MainPage = () => {
   });
 
   if (postQuery.isLoading) {
-    console.log("loading hours");
+    return <Loading/>;
   }
 
   if (postQuery.isError) {
@@ -84,6 +85,7 @@ export const MainPage = () => {
     return <div style={{ display: "flex", width: "100%" }}>{triangles}</div>;
   });
 
+  
   const data = postQuery.data;
 
 
