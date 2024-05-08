@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import TopSection from "./Images/TopSection.png";
 import Logo from "./Images/Logo.svg";
-import Pysznepl from "./Images/Pysznepl.svg";
+import Pysznepl from "./Images/Pysznepl.png";
 import WelcomeImage from "./Images/WelcomeImage.png";
 import MenuSection from "./Images/MenuSection.png";
 import footerLogo from "./Images/footerLogo.svg";
 import FB from "./Images/fb.svg";
-import ButtonPyszne from "./Images/ButtonPyszne.svg";
+import ButtonPyszne from "./Images/ButtonPyszne.png";
 import Telephone from "./Images/Telephone.svg";
 import React, { useMemo } from "react";
 
@@ -76,7 +76,7 @@ export const MainPage = () => {
         <img
           src={Logo}
           alt="Logo"
-          className="absolute sm:w-[20%] md:w-[20%] sm:top-[9%] md:top-[20%] l:top-[22%] xl:top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute sm:w-[20%] md:w-[20%] sm:top-[10%] md:top-[20%] l:top-[22%] xl:top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
       </div>
 
@@ -115,9 +115,9 @@ export const MainPage = () => {
                 )
               }
             >
-              <div className="flex flex-col items-center justify-center">
+              <div className="flex flex-col items-center">
                 <p className="text-[14px] font-black mt-2">ZAMÓW ONLINE</p>
-                <img src={Pysznepl} alt="pysznepl" className="mb-2 ml-2" />
+                <img src={Pysznepl} alt="pysznepl" className="mb-2 ml-2 mr-3" />
               </div>
             </div>
 
@@ -182,33 +182,33 @@ export const MainPage = () => {
             ZAPRASZAMY:
           </h2>
 
+          <div className="flex flex-col items-center">
+            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">poniedziałek - środa:</p>
+              <p className="font-normal">nieczynne</p>
+            </div>
 
-          <div className="text-center flex justify-between sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-            <p>poniedziałek - środa:</p>
-            <p className="font-normal">nieczynne</p>
-          </div>
+            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">czwartek:</p>
+              <p className="font-normal">16:30 - 21:00</p>
+            </div>
 
-          <div className="flex justify-between sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-            <p>czwartek:</p>
-            <p className="font-normal">16:30 - 21:00</p>
-          </div>
+            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">piątek:</p>
+              <p className="font-normal">16:30 - 22:00</p>
+            </div>
 
-          <div className="flex justify-between sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-            <p>piątek:</p>
-            <p className="font-normal">16:30 - 22:00</p>
-          </div>
+            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">sobota:</p>
+              <p className="font-normal">13:00 - 22:00</p>
+            </div>
 
-          <div className="flex justify-between sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-            <p>sobota:</p>
-            <p className="font-normal">13:00 - 22:00</p>
-          </div>
-
-          <div className="flex justify-between sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-            <p>niedziela:</p>
-            <p className="font-normal">14:00 - 21:00</p>
+            <div className="text-center flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">niedziela:</p>
+              <p className="font-normal">14:00 - 21:00</p>
+            </div>
           </div>
         </div>
-
         <iframe
           className="sm:h-[300px] sm:w-[300px] md:w-[420px] md:h-[420px] l:w-[420px] l:h-[420px] xl:w-[420px] xl:h-[420px]"
           id="gmap_canvas"
@@ -245,7 +245,7 @@ export const MainPage = () => {
           <div className="flex sm:justify-center">
             <img src={Telephone} alt="telefon" className="mr-2" />
             <a className="flex" href="tel:+48 572 172 272">
-              <h1 className="md:text-[24px] l:text-[32px] xl:text-[32px]">
+              <h1 className="md:text-[24px] l:text-[29px] xl:text-[32px]">
                 +48 572 172 272
               </h1>
             </a>

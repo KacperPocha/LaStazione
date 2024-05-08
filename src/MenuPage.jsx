@@ -5,10 +5,10 @@ import { fetchPizza, fetchToppings } from "./API/Posts";
 import React, { useMemo } from "react";
 import MenuTopSection from "./Images/MenuTopSection.png";
 import Logo from "./Images/Logo.svg";
-import PyszneMenu from "./Images/PyszneMenu.svg";
+import PyszneMenu from "./Images/PyszneMenu.png";
 import footerLogo from "./Images/LogoDark.svg";
 import FB from "./Images/FBDark.svg";
-import ButtonPyszne from "./Images/PysznePLDark.svg";
+import ButtonPyszne from "./Images/PysznePLDark.png";
 
 export const MenuPage = () => {
   const navigate = useNavigate();
@@ -80,9 +80,12 @@ export const MenuPage = () => {
       <div>
         <img src={MenuTopSection} alt="ZDJĘCIE PIZZ" className="w-full" />
         <img
+          onClick={() => {
+            navigate("/LaStazione/");
+          }}
           src={Logo}
           alt="Logo"
-          className="absolute sm:w-[20%] md:w-[20%] sm:top-[9%] md:top-[20%] l:top-[22%] xl:top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          className="cursor-pointer absolute sm:w-[20%] md:w-[20%] sm:top-[9%] md:top-[20%] l:top-[22%] xl:top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
       </div>
 
@@ -96,12 +99,12 @@ export const MenuPage = () => {
           <div className="text-white mt-8 flex sm:flex-col sm:items-center md:flex-row md:ml-6 l:ml-20">
             <a
               href="tel:+48 572 172 272"
-              className="sm:text-[20px] md:text-[32px] font-semibold bg-[#343434] sm:pt-2 sm:pb-2 sm:pl-11 sm:pr-11 md:pt-4 md:pb-4 md:pl-4 md:pr-4 md:mr-12 l:pt-4 l:pb-4 l:pl-4 l:pr-4 l:mr-2 xl:pt-4 xl:pl-4 xl:pr-4 xl:mr-2 xl:ml-8 rounded-full "
+              className="sm:text-[20px] md:text-[32px] font-semibold bg-[#343434] sm:pt-2 sm:pb-2 sm:pl-11 sm:pr-11 md:pt-4 md:pb-4 md:pl-6 md:pr-6 md:mr-12 l:pt-4 l:pb-4 l:pl-6 l:pr-6 l:mr-2 xl:pt-4 xl:pl-6 xl:pr-6 xl:mr-2 xl:ml-8 rounded-full "
             >
               +48 572 172 272
             </a>
             <div
-              className="bg-[#343434] rounded-full sm:flex sm:justify-center sm:w-[50%] md:w-[45%] l:w-[45%] xl:w-[45%] sm:mt-4 sm:pt-2 sm:pb-2 md:pt-3 md:pl-6 md:pr-6 md:ml-3 md:pb-2 l:pt-3 l:pl-6 l:pr-6 l:ml-3 l:pb-2 xl:pt-3 xl:pl-6 xl:pr-6 xl:ml-3 xl:pb-3"
+              className="bg-[#343434] rounded-full sm:flex sm:justify-center sm:w-[250px] md:w-[45%] l:w-[45%] xl:w-[45%] sm:mt-4 sm:pt-2 sm:pb-2 md:pt-3 md:pl-6 md:pr-6 md:ml-3 md:pb-2 l:pt-3 l:pl-6 l:pr-6 l:ml-3 l:pb-2 xl:pt-3 xl:pl-6 xl:pr-6 xl:ml-3 xl:pb-3"
               onClick={() =>
                 window.open(
                   "https://www.pyszne.pl/menu/la-stazione-miliardowicka?&adj_tracker=5rz7oa4&adj_campaign=11848902408&k1111=k1111&campaignname=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&utm_source=google&utm_medium=cpc&utm_campaign=CM_S_G_POL_PL_%5BRES%5D_%5BENGM%5D_OD_National&gad_source=1&gclid=Cj0KCQjw_qexBhCoARIsAFgBleu74yA_LEE7YpfucIw4rgcRzguOmxXQ1Ry3e02gSw3wyUBv15VI70MaAmaJEALw_wcB&gclsrc=aw.ds"
