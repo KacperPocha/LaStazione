@@ -9,9 +9,12 @@ import FB from "./Images/fb.svg";
 import ButtonPyszne from "./Images/ButtonPyszne.png";
 import Telephone from "./Images/Telephone.svg";
 import React, { useMemo } from "react";
+import { fetchHours } from "./API/Posts";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const MainPage = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -19,6 +22,19 @@ export const MainPage = () => {
       behavior: "smooth",
     });
   };
+
+  const postQuery = useQuery({
+    queryKey: ["hours"],
+    queryFn: () => fetchHours(),
+  });
+
+  if (postQuery.isLoading) {
+    console.log("loading hours");
+  }
+
+  if (postQuery.isError) {
+    return <div>error</div>;
+  }
 
   const Triangle = React.memo(({ color = "brown" }) => {
     return (
@@ -67,6 +83,10 @@ export const MainPage = () => {
 
     return <div style={{ display: "flex", width: "100%" }}>{triangles}</div>;
   });
+
+  const data = postQuery.data;
+
+
 
   return (
     <div className="font-inter">
@@ -125,7 +145,7 @@ export const MainPage = () => {
               <div className="flex justify-center">
                 <a className="text-[18px] mt-2" href="tel:+48 527 172 27">
                   <p className="font-black">ZADZWOŃ</p>
-                  <p>+48 527 172 272</p>
+                  <p>+48 572 172 272</p>
                 </a>
               </div>
             </button>
@@ -175,7 +195,7 @@ export const MainPage = () => {
           <h1 className="sm:text-[30px] md:text-[36px] l:text-[36px] xl:text-[36px] font-extrabold">
             Odwiedź nas!
           </h1>
-          <p className="text-[16px] leading-[36px] mb-12">
+          <p className="text-[16px] leading-[36px] mb-6">
             Znajdujemy się w Miedzyrzeczu Dolnym przy boisku
           </p>
           <h2 className="sm:text-[26px] md:text-[32px] l:text-[32px] xl:text-[32px]">
@@ -184,28 +204,38 @@ export const MainPage = () => {
 
           <div className="flex flex-col items-center">
             <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-              <p className="mr-2">poniedziałek - środa:</p>
-              <p className="font-normal">nieczynne</p>
+              <p className="mr-2">poniedziałek:</p>
+              <p className="font-normal">{data.data[0].attributes.Poniedzialek}</p>
+            </div>
+
+            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">wtorek:</p>
+              <p className="font-normal">{data.data[0].attributes.Wtorek}</p>
+            </div>
+
+            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">środa:</p>
+              <p className="font-normal">{data.data[0].attributes.Sroda}</p>
             </div>
 
             <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
               <p className="mr-2">czwartek:</p>
-              <p className="font-normal">16:30 - 21:00</p>
+              <p className="font-normal">{data.data[0].attributes.Czwartek}</p>
             </div>
 
             <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
               <p className="mr-2">piątek:</p>
-              <p className="font-normal">16:30 - 22:00</p>
+              <p className="font-normal">{data.data[0].attributes.Piatek}</p>
             </div>
 
             <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
               <p className="mr-2">sobota:</p>
-              <p className="font-normal">13:00 - 22:00</p>
+              <p className="font-normal">{data.data[0].attributes.Sobota}</p>
             </div>
 
             <div className="text-center flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
               <p className="mr-2">niedziela:</p>
-              <p className="font-normal">14:00 - 21:00</p>
+              <p className="font-normal">{data.data[0].attributes.Niedziela}</p>
             </div>
           </div>
         </div>
