@@ -127,7 +127,7 @@ export const MenuPage = () => {
           <TriangleRow color="#343434" triangleCount={47} />
         </div>
         <div className="bg-[#343434] mt-[-2px] flex-row justify-center w-full pb-12">
-          <ul className="grid sm:grid-cols-1 md:grid-cols-2 l:grid-cols-3 xl:grid-cols-3 text-white md:w-[90%] l:w-[95%] xl:w-[75%] my-0 mx-auto">
+          <ul className="grid sm:grid-cols-1 md:grid-cols-2 l:grid-cols-3 xl:grid-cols-3 text-white sm:w-[80%] md:w-[80%] l:w-[70%] xl:w-[65%] my-0 mx-auto">
             {data.map((pizza) => {
               return (
                 <li
@@ -152,26 +152,26 @@ export const MenuPage = () => {
                     </div>
                     <div className="w-[110%] grid grid-cols-3 text-center">
                       <div>
-                        <p className="sm:text-[14px] md:text-[16px] l:text-[20px] xl:text-[20px] font-thin mb-[-4px]">
+                        <p className="sm:text-[12px] md:text-[14px] l:text-[16px] xl:text-[20px] font-thin mb-[-4px]">
                           32 cm
                         </p>
-                        <p className="sm:text-[22px] md:text-[28px] l:text-[32px] xl:text-[32px]">
+                        <p className="sm:text-[19px] md:text-[22px] l:text-[26px] xl:text-[32px]">
                           {pizza.attributes.priceSmall} zł
                         </p>
                       </div>
                       <div className="border-r-2 border-l-2 sm:px-4 md:px-6">
-                        <p className="sm:text-[14px] md:text-[16px] l:text-[20px] xl:text-[20px] font-thin mb-[-4px]">
+                        <p className="sm:text-[12px] md:text-[14px] l:text-[16px] xl:text-[20px] font-thin mb-[-4px]">
                           45 cm
                         </p>
-                        <p className="sm:text-[22px] md:text-[28px] l:text-[32px] xl:text-[32px]">
+                        <p className="sm:text-[19px] md:text-[22px] l:text-[26px] xl:text-[32px]">
                           {pizza.attributes.priceMedium} zł
                         </p>
                       </div>
                       <div>
-                        <p className="sm:text-[14px] md:text-[16px] l:text-[20px] xl:text-[20px] font-thin mb-[-4px]">
+                        <p className="sm:text-[12px] md:text-[14px] l:text-[16px] xl:text-[20px] font-thin mb-[-4px]">
                           60 cm
                         </p>
-                        <p className="sm:text-[22px] md:text-[28px] l:text-[32px] xl:text-[32px]">
+                        <p className="sm:text-[19px] md:text-[22px] l:text-[26px] xl:text-[32px]">
                           {pizza.attributes.priceBig} zł
                         </p>
                       </div>

@@ -10,10 +10,11 @@ import ButtonPyszne from "./Images/ButtonPyszne.png";
 import Telephone from "./Images/Telephone.svg";
 import React, { useMemo } from "react";
 import { fetchHours } from "./API/Posts";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useIsFetching, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Loading } from "./Loading";
 
 export const MainPage = () => {
+  const isFetching = useIsFetching();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -24,19 +25,25 @@ export const MainPage = () => {
     });
   };
 
-  const postQuery = useQuery({
+  const {
+    data: hoursData,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ["hours"],
     queryFn: () => fetchHours(),
+    staleTime: Infinity, // prevent refetching
+    cacheTime: Infinity, // data cached indefinitely
+    refetchOnWindowFocus: false, // don't refetch on window focus
+    refetchOnMount: false, // don't refetch when the component re-mounts
+    onError: (err) => {
+      console.error("Error fetching hours:", err);
+    },
   });
 
-  if (postQuery.isLoading) {
-    return <Loading/>;
+  if (isError) {
+    console.error("Error fetching opening hours: ", error?.message);
   }
-
-  if (postQuery.isError) {
-    return <div>error</div>;
-  }
-
   const Triangle = React.memo(({ color = "brown" }) => {
     return (
       <div
@@ -84,11 +91,6 @@ export const MainPage = () => {
 
     return <div style={{ display: "flex", width: "100%" }}>{triangles}</div>;
   });
-
-  
-  const data = postQuery.data;
-
-
 
   return (
     <div className="font-inter">
@@ -203,43 +205,58 @@ export const MainPage = () => {
           <h2 className="sm:text-[26px] md:text-[32px] l:text-[32px] xl:text-[32px]">
             ZAPRASZAMY:
           </h2>
+          {hoursData && (
+            <div className="flex flex-col items-center">
+              <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+                <p className="mr-2">poniedziałek:</p>
+                <p className="font-normal">
+                  {hoursData.data[0].attributes.Poniedzialek}
+                </p>
+              </div>
 
-          <div className="flex flex-col items-center">
-            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-              <p className="mr-2">poniedziałek:</p>
-              <p className="font-normal">{data.data[0].attributes.Poniedzialek}</p>
-            </div>
+              <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+                <p className="mr-2">wtorek:</p>
+                <p className="font-normal">
+                  {hoursData.data[0].attributes.Wtorek}
+                </p>
+              </div>
 
-            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-              <p className="mr-2">wtorek:</p>
-              <p className="font-normal">{data.data[0].attributes.Wtorek}</p>
-            </div>
+              <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+                <p className="mr-2">środa:</p>
+                <p className="font-normal">
+                  {hoursData.data[0].attributes.Sroda}
+                </p>
+              </div>
 
-            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-              <p className="mr-2">środa:</p>
-              <p className="font-normal">{data.data[0].attributes.Sroda}</p>
-            </div>
+              <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+                <p className="mr-2">czwartek:</p>
+                <p className="font-normal">
+                  {hoursData.data[0].attributes.Czwartek}
+                </p>
+              </div>
 
-            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-              <p className="mr-2">czwartek:</p>
-              <p className="font-normal">{data.data[0].attributes.Czwartek}</p>
-            </div>
+              <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+                <p className="mr-2">piątek:</p>
+                <p className="font-normal">
+                  {hoursData.data[0].attributes.Piatek}
+                </p>
+              </div>
 
-            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-              <p className="mr-2">piątek:</p>
-              <p className="font-normal">{data.data[0].attributes.Piatek}</p>
-            </div>
+              <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+                <p className="mr-2">sobota:</p>
+                <p className="font-normal">
+                  {hoursData.data[0].attributes.Sobota}
+                </p>
+              </div>
 
-            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-              <p className="mr-2">sobota:</p>
-              <p className="font-normal">{data.data[0].attributes.Sobota}</p>
+              <div className="text-center flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+                <p className="mr-2">niedziela:</p>
+                <p className="font-normal">
+                  {hoursData.data[0].attributes.Niedziela}
+                </p>
+              </div>
             </div>
-
-            <div className="text-center flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-              <p className="mr-2">niedziela:</p>
-              <p className="font-normal">{data.data[0].attributes.Niedziela}</p>
-            </div>
-          </div>
+          )}
         </div>
         <iframe
           className="sm:h-[300px] sm:w-[300px] md:w-[420px] md:h-[420px] l:w-[420px] l:h-[420px] xl:w-[420px] xl:h-[420px]"
