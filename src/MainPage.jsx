@@ -11,10 +11,9 @@ import Telephone from "./Images/Telephone.svg";
 import React, { useMemo } from "react";
 import { fetchHours } from "./API/Posts";
 import { useIsFetching, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Loading } from "./Loading";
 
 export const MainPage = () => {
-  const isFetching = useIsFetching();
+
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -32,10 +31,10 @@ export const MainPage = () => {
   } = useQuery({
     queryKey: ["hours"],
     queryFn: () => fetchHours(),
-    staleTime: Infinity, // prevent refetching
-    cacheTime: Infinity, // data cached indefinitely
+    staleTime: Infinity,
+    cacheTime: Infinity,
     refetchOnWindowFocus: false, // don't refetch on window focus
-    refetchOnMount: false, // don't refetch when the component re-mounts
+    refetchOnMount: false,
     onError: (err) => {
       console.error("Error fetching hours:", err);
     },
