@@ -46,6 +46,7 @@ export const MainPage = () => {
     console.error("Error fetching opening hours: ", error?.message);
   }
 
+  console.log(hoursData)
   const Triangle = React.memo(({ color = "brown" }) => {
     return (
       <div
