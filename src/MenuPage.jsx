@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { Loading } from "./Loading";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchPizza, fetchToppings } from "./API/Posts";
+import { fetchPizza} from "./API/Posts";
+import { Toppings } from "./Toppings";
 import React, { useMemo } from "react";
 import MenuTopSection from "./Images/MenuTopSection.png";
 import Logo from "./Images/Logo.svg";
@@ -9,39 +9,33 @@ import PyszneMenu from "./Images/PyszneMenu.png";
 import footerLogo from "./Images/LogoDark.svg";
 import FB from "./Images/FBDark.svg";
 import ButtonPyszne from "./Images/PysznePLDark.png";
+import LoadingPizza from "./Images/LoadingPizza.png";
+
 
 export const MenuPage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const postQuery = useQuery({
+  const {
+    data: pizzasData,
+    isError,
+    error,
+    isLoading,
+  } = useQuery({
     queryKey: ["pizza"],
     queryFn: () => fetchPizza(),
+    staleTime: Infinity,
+    cacheTime: Infinity,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    onError: (err) => {
+      console.error("Error fetching toppings:", err);
+    },
   });
 
-  const postToppings = useQuery({
-    queryKey: ["topping"],
-    queryFn: () => fetchToppings(),
-  });
-
-  if (postToppings.isLoading) {
-    return <Loading />;
+  if (isError) {
+    console.error("Error fetching toppings: ", error?.message);
   }
-
-  if (postToppings.isError) {
-    return <div>error</div>;
-  }
-
-  if (postQuery.isLoading) {
-    return <Loading />;
-  }
-
-  if (postQuery.isError) {
-    return <div>error</div>;
-  }
-
-  const dataToppings = postToppings.data.data;
-  const data = postQuery.data.data;
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -127,167 +121,75 @@ export const MenuPage = () => {
           <TriangleRow color="#343434" triangleCount={47} />
         </div>
         <div className="bg-[#343434] mt-[-2px] flex-row justify-center w-full pb-12">
-          <ul className="grid sm:grid-cols-1 md:grid-cols-2 l:grid-cols-3 xl:grid-cols-3 text-white sm:w-[80%] md:w-[80%] l:w-[70%] xl:w-[65%] my-0 mx-auto">
-            {data.map((pizza) => {
-              return (
-                <li
-                  key={pizza.id}
-                  className="flex flex-col col-span-1 mt-20 mb-[-40px] place-items-center"
-                >
-                  <div className="flex flex-col items-center px-4 w-full max-w-md">
-                    <div className="bg-[#EBEBEB] rounded-3xl w-full">
-                      <img
-                        src={`https://strapi.krysta.dev${pizza.attributes.photo.data.attributes.url}`}
-                        alt="pizza"
-                        className="w-full"
-                      />
-                    </div>
-                    <div className="text-left mt-4 w-full ml-2 min-h-[90px]">
-                      <h1 className="text-[28px] mb-[-4px] font-black">
-                        {pizza.attributes.name}
-                      </h1>
-                      <p className="text-[14px] mb-4 break-words">
-                        {pizza.attributes.ingredients}
-                      </p>
-                    </div>
-                    <div className="w-[110%] grid grid-cols-3 text-center">
-                      <div>
-                        <p className="sm:text-[12px] md:text-[14px] l:text-[16px] xl:text-[20px] font-thin mb-[-4px]">
-                          32 cm
-                        </p>
-                        <p className="sm:text-[19px] md:text-[22px] l:text-[26px] xl:text-[32px]">
-                          {pizza.attributes.priceSmall} zł
+        {isLoading ? (
+            <div className="col-span-2 flex flex-col justify-center items-center">
+              <h1 className="text-white text-[20px] text-center mt-24">Wczytywanie menu...</h1>
+              <img
+                src={LoadingPizza}
+                alt="Wczytywanie"
+                className="w-[150px] mx-auto animate-spin-slow "
+              />
+            </div>
+          ) : (
+            <ul className="grid sm:grid-cols-1 md:grid-cols-2 l:grid-cols-3 xl:grid-cols-3 text-white sm:w-[80%] md:w-[80%] l:w-[70%] xl:w-[65%] my-0 mx-auto">
+              {pizzasData.data.map((pizza) => {
+                return (
+                  <li
+                    key={pizza.id}
+                    className="flex flex-col col-span-1 mt-20 mb-[-40px] place-items-center"
+                  >
+                    <div className="flex flex-col items-center px-4 w-full max-w-md">
+                      <div className="bg-[#EBEBEB] rounded-3xl w-full">
+                        <img
+                          src={`https://strapi.krysta.dev${pizza.attributes.photo.data.attributes.url}`}
+                          alt="pizza"
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="text-left mt-4 w-full ml-2 min-h-[90px]">
+                        <h1 className="text-[28px] mb-[-4px] font-black">
+                          {pizza.attributes.name}
+                        </h1>
+                        <p className="text-[14px] mb-4 break-words">
+                          {pizza.attributes.ingredients}
                         </p>
                       </div>
-                      <div className="border-r-2 border-l-2 sm:px-4 md:px-6">
-                        <p className="sm:text-[12px] md:text-[14px] l:text-[16px] xl:text-[20px] font-thin mb-[-4px]">
-                          45 cm
-                        </p>
-                        <p className="sm:text-[19px] md:text-[22px] l:text-[26px] xl:text-[32px]">
-                          {pizza.attributes.priceMedium} zł
-                        </p>
-                      </div>
-                      <div>
-                        <p className="sm:text-[12px] md:text-[14px] l:text-[16px] xl:text-[20px] font-thin mb-[-4px]">
-                          60 cm
-                        </p>
-                        <p className="sm:text-[19px] md:text-[22px] l:text-[26px] xl:text-[32px]">
-                          {pizza.attributes.priceBig} zł
-                        </p>
+                      <div className="w-[110%] grid grid-cols-3 text-center">
+                        <div>
+                          <p className="sm:text-[12px] md:text-[14px] l:text-[16px] xl:text-[20px] font-thin mb-[-4px]">
+                            32 cm
+                          </p>
+                          <p className="sm:text-[19px] md:text-[22px] l:text-[26px] xl:text-[32px]">
+                            {pizza.attributes.priceSmall} zł
+                          </p>
+                        </div>
+                        <div className="border-r-2 border-l-2 sm:px-4 md:px-6">
+                          <p className="sm:text-[12px] md:text-[14px] l:text-[16px] xl:text-[20px] font-thin mb-[-4px]">
+                            45 cm
+                          </p>
+                          <p className="sm:text-[19px] md:text-[22px] l:text-[26px] xl:text-[32px]">
+                            {pizza.attributes.priceMedium} zł
+                          </p>
+                        </div>
+                        <div>
+                          <p className="sm:text-[12px] md:text-[14px] l:text-[16px] xl:text-[20px] font-thin mb-[-4px]">
+                            60 cm
+                          </p>
+                          <p className="sm:text-[19px] md:text-[22px] l:text-[26px] xl:text-[32px]">
+                            {pizza.attributes.priceBig} zł
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
 
           {/*SEKCJA NAPOJE I DODATKI */}
-          <div className="mt-24 grid sm:grid-cols-1 md:grid-cols-2 l:grid-cols-2 xl:grid-cols-2 mx-auto mb-12">
-            <div className="bg-white col-span-1 sm:mb-4 sm:m-2 md:mr-5 md:ml-12 l:ml-12 l:mr-12 xl:ml-64 xl:mr-24 rounded-3xl overflow-hidden">
-              <div>
-                <h1 className="text-[24px] font-black m-0 w-full bg-[#D9D9D9] px-6 py-4 rounded-t-3xl">
-                  DODATKI
-                </h1>
-                <div className="px-6 mt-4">
-                  <div className="flex justify-between">
-                    <div>
-                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-8px]">
-                        sosy:
-                      </p>
-                      <p className="sm:text-[10px] md:text-[11px] l:text-[16px] mb-2">
-                        pomidorowy, czosnkowy, meksykański
-                      </p>
-                    </div>
-                    <div>
-                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
-                        {dataToppings[0].attributes.sos}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between">
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
-                      dodatek serowy
-                    </p>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
-                      {dataToppings[0].attributes.cheese}
-                    </p>
-                  </div>
-                  <div className="flex justify-between">
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
-                      dodatek mięsny
-                    </p>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
-                      {dataToppings[0].attributes.meat}
-                    </p>
-                  </div>
-                  <div className="flex justify-between">
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-8">
-                      dodatek warzywny
-                    </p>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
-                      {dataToppings[0].attributes.vegetables}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white col-span-1 sm:m-2 md:mr-12 md:ml-5 l:ml-12 l:mr-12 xl:ml-24 xl:mr-64 rounded-3xl overflow-hidden">
-              <div>
-                <h1 className="text-[24px] font-black m-0 w-full bg-[#D9D9D9] px-6 py-4 rounded-t-3xl">
-                  NAPOJE
-                </h1>
-                <div className="px-6 mt-4">
-                  <div className="flex justify-between">
-                    <div>
-                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-8px]">
-                        Kropla beskidu
-                      </p>
-                      <p className="sm:text-[10px] md:text-[11px] l:text-[16px] mb-2">
-                        gazowania/niegazowana
-                      </p>
-                    </div>
-                    <div>
-                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
-                        {dataToppings[0].attributes.water}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between">
-                    <div>
-                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-8px]">
-                        Coca-Cola
-                      </p>
-                      <p className="sm:text-[10px] md:text-[11px] l:text-[16px]">
-                        500ml/850ml
-                      </p>
-                    </div>
-                    <div>
-                      <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
-                        {dataToppings[0].attributes.cola}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between">
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
-                      Fanta
-                    </p>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
-                      {dataToppings[0].attributes.fanta}
-                    </p>
-                  </div>
-                  <div className="flex justify-between">
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-8">
-                      Sprite
-                    </p>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium">
-                      {dataToppings[0].attributes.sprite}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="mt-24 sm:w-[90%] md:w-[85%] l:w-[75%] xl:w-[65%] mx-auto mb-12">
+            <Toppings></Toppings>
           </div>
         </div>
       </div>

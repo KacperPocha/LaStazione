@@ -33,7 +33,7 @@ export const MainPage = () => {
     queryFn: () => fetchHours(),
     staleTime: Infinity,
     cacheTime: Infinity,
-    refetchOnWindowFocus: false, // don't refetch on window focus
+    refetchOnWindowFocus: false,
     refetchOnMount: false,
     onError: (err) => {
       console.error("Error fetching hours:", err);
@@ -43,6 +43,7 @@ export const MainPage = () => {
   if (isError) {
     console.error("Error fetching opening hours: ", error?.message);
   }
+
   const Triangle = React.memo(({ color = "brown" }) => {
     return (
       <div
