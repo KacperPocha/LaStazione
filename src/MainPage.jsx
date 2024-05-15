@@ -10,7 +10,8 @@ import ButtonPyszne from "./Images/ButtonPyszne.png";
 import Telephone from "./Images/Telephone.svg";
 import React, { useMemo } from "react";
 import { fetchHours } from "./API/Posts";
-import { useIsFetching, useQuery, useQueryClient } from "@tanstack/react-query";
+import LoadingPizza from "./Images/LoadingPizza.png";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const MainPage = () => {
 
@@ -27,6 +28,7 @@ export const MainPage = () => {
   const {
     data: hoursData,
     isError,
+    isLoading,
     error,
   } = useQuery({
     queryKey: ["hours"],
@@ -195,6 +197,16 @@ export const MainPage = () => {
 
       {/*SEKCJA KONTAKT*/}
       <div className="mt-16 mb-16 flex sm:flex-col sm:items-center md:flex-col md:items-center l:justify-center xl:justify-center">
+        {isLoading ? (
+            <div className="col-span-2 flex flex-col justify-center items-center sm:mb-12 md:mb-24 l:mr-24 l:mb-16 xl:mr-24 xl:mb-16">
+              <h1 className="text-black text-[20px] text-center l:mt-24 xl:mt-24">Wczytywanie godzin otwarcia...</h1>
+              <img
+                src={LoadingPizza}
+                alt="Wczytywanie"
+                className="w-[150px] mx-auto animate-spin-slow "
+              />
+            </div>
+          ) : (
         <div className="sm:mb-16 sm:ml-4 sm:mr-4 md:ml-4 md:mr-4 md:mb-14 text-center l:mr-16 xl:mr-24">
           <h1 className="sm:text-[30px] md:text-[36px] l:text-[36px] xl:text-[36px] font-extrabold">
             Odwiedź nas!
@@ -258,6 +270,7 @@ export const MainPage = () => {
             </div>
           )}
         </div>
+          )}
         <iframe
           className="sm:h-[300px] sm:w-[300px] md:w-[420px] md:h-[420px] l:w-[420px] l:h-[420px] xl:w-[420px] xl:h-[420px]"
           id="gmap_canvas"
