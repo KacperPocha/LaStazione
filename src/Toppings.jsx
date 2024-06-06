@@ -46,7 +46,7 @@ export const Toppings = () => {
               <div className="px-6 mt-4">
                 <div className="flex justify-between">
                   <div>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-8px]">
+                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-5px]">
                       sosy:
                     </p>
                     <p className="sm:text-[10px] md:text-[11px] l:text-[16px] mb-2">
@@ -95,7 +95,7 @@ export const Toppings = () => {
               <div className="px-6 mt-4">
                 <div className="flex justify-between">
                   <div>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-8px]">
+                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-5px]">
                       Kropla beskidu
                     </p>
                     <p className="sm:text-[10px] md:text-[11px] l:text-[16px] mb-2">
@@ -110,7 +110,7 @@ export const Toppings = () => {
                 </div>
                 <div className="flex justify-between">
                   <div>
-                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-8px]">
+                    <p className="sm:text-[16px] md:text-[20px] l:text-[22px] xl:text-[22px] font-medium mb-[-5px]">
                       Coca-Cola
                     </p>
                     <p className="sm:text-[10px] md:text-[11px] l:text-[16px]">

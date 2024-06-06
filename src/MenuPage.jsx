@@ -141,7 +141,7 @@ export const MenuPage = () => {
                     <div className="flex flex-col items-center px-4 w-full max-w-md">
                       <div className="bg-[#EBEBEB] rounded-3xl w-full">
                         <img
-                          src={`https://strapi.krysta.dev${pizza.attributes.photo.data.attributes.url}`}
+                          src={`https://api.lastazionepizzeria.pl${pizza.attributes.photo.data.attributes.url}`}
                           alt="pizza"
                           className="w-full"
                         />

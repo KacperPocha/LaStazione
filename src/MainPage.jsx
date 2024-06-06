@@ -22,26 +22,15 @@ export const MainPage = () => {
       top: 0,
       behavior: "smooth",
     });
-  };
+  }; 
 
-  const {
-    data: hoursData,
-    isError,
-    isLoading,
-    error,
-  } = useQuery({
+
+  const postQuery = useQuery({
     queryKey: ["hours"],
-    queryFn: () => fetchHours(),
-    staleTime: Infinity,
-    cacheTime: Infinity,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    onError: (err) => {
-      console.error("Error fetching hours:", err);
-    },
+    queryFn: fetchHours,
   });
 
-  if (isLoading) {
+  if (postQuery.isLoading) {
     return (
       <div className="w-screen h-screen bg-[#343434]">
       <div className="col-span-2 flex flex-col justify-center items-center">
@@ -57,6 +46,21 @@ export const MainPage = () => {
       </div>
     );
   }
+
+  if(postQuery.isError){
+    return (
+      <div className="w-screen h-screen bg-[#343434]">
+      <div className="col-span-2 flex flex-col justify-center items-center">
+        <h1 className="text-white text-[50px] text-center mt-24">
+          {postQuery.error.message}
+          </h1>
+      </div>
+      </div>
+    );
+  }
+
+const data = postQuery.data
+
 
   const Triangle = React.memo(({ color = "brown" }) => {
     return (
@@ -138,7 +142,7 @@ export const MainPage = () => {
             <p className="break-normal">
               Zapraszamy do składania zamówień telefonicznie albo przez stronę
               pyszne.pl. Jesteśmy restauracją "Take away", czyli oferujemy pizzę
-              na wynos. Możliwy dowóż lub odbiór osobisty
+              na wynos. Możliwy dowóz lub odbiór osobisty
             </p>
           </div>
           <div className="text-[20px] mt-4 mb-8 font-bold">
@@ -219,58 +223,56 @@ export const MainPage = () => {
           <h2 className="sm:text-[26px] md:text-[32px] l:text-[32px] xl:text-[32px]">
             ZAPRASZAMY:
           </h2>
-          {hoursData && (
             <div className="flex flex-col items-center">
               <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
                 <p className="mr-2">poniedziałek:</p>
                 <p className="font-normal">
-                  {hoursData.data[0].attributes.Poniedzialek}
+                  {data.data[0].attributes.Poniedzialek}
                 </p>
               </div>
 
               <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
                 <p className="mr-2">wtorek:</p>
                 <p className="font-normal">
-                  {hoursData.data[0].attributes.Wtorek}
+                  {data.data[0].attributes.Wtorek}
                 </p>
               </div>
 
               <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
                 <p className="mr-2">środa:</p>
                 <p className="font-normal">
-                  {hoursData.data[0].attributes.Sroda}
+                  {data.data[0].attributes.Sroda}
                 </p>
               </div>
 
               <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
                 <p className="mr-2">czwartek:</p>
                 <p className="font-normal">
-                  {hoursData.data[0].attributes.Czwartek}
+                  {data.data[0].attributes.Czwartek}
                 </p>
               </div>
 
               <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
                 <p className="mr-2">piątek:</p>
                 <p className="font-normal">
-                  {hoursData.data[0].attributes.Piatek}
+                  {data.data[0].attributes.Piatek}
                 </p>
               </div>
 
               <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
                 <p className="mr-2">sobota:</p>
                 <p className="font-normal">
-                  {hoursData.data[0].attributes.Sobota}
+                  {data.data[0].attributes.Sobota}
                 </p>
               </div>
 
               <div className="text-center flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
                 <p className="mr-2">niedziela:</p>
                 <p className="font-normal">
-                  {hoursData.data[0].attributes.Niedziela}
+                  {data.data[0].attributes.Niedziela}
                 </p>
               </div>
             </div>
-          )}
         </div>
 
         <iframe
