@@ -5,8 +5,8 @@ import { MenuPage } from "./MenuPage";
 function App() {
   return (
         <Routes>
-          <Route path="/LaStazione/" element={<MainPage/>}/>
-          <Route path="/LaStazione/menu" element={<MenuPage/>}/>
+          <Route path="/" element={<MainPage/>}/>
+          <Route path="/menu" element={<MenuPage/>}/>
         </Routes>
   );
 }
