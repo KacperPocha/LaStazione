@@ -2,7 +2,7 @@
   "name": "lastazione",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://kacperpocha.github.io/LaStazione/",
+  "homepage": "https://lastazionepizzeria.pl/",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
