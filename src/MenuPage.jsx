@@ -108,7 +108,7 @@ export const MenuPage = () => {
               <img
                 src={PyszneMenu}
                 alt="pysznepl"
-                className="md:pr-8 md:pl-8 md:h-14 l:pr-8 l:pl-8 xl:pr-8 xl:pl-8 md:h-14 md:w-[100%] sm:w-[60%] sm:pb-2 sm:pt-2 "
+                className="cursor:pointer md:pr-8 md:pl-8 md:h-14 l:pr-8 l:pl-8 xl:pr-8 xl:pl-8 md:h-14 md:w-[100%] sm:w-[60%] sm:pb-2 sm:pt-2 "
               />
             </div>
           </div>
