@@ -75,7 +75,7 @@ export const MenuPage = () => {
         <img src={MenuTopSection} alt="ZDJĘCIE PIZZ" className="w-full" />
         <img
           onClick={() => {
-            navigate("https://lastazionepizzeria.pl/");
+            navigate("/");
           }}
           src={Logo}
           alt="Logo"
@@ -199,7 +199,7 @@ export const MenuPage = () => {
         <div className="col-1 font-thin md:ml-10 l:ml-10 xl:ml-12 mt-4">
           <p
             className="mb-4 cursor-pointer"
-            onClick={() => navigate("https://lastazionepizzeria.pl/")}
+            onClick={() => navigate("/")}
           >
             strona główna
           </p>

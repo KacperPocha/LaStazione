@@ -200,7 +200,7 @@ const data = postQuery.data
               <button
                 className="bg-white rounded-full font-black text-center text-black mt-6 sm:text-[18px] sm:mb-8 sm:mx-8 md:text-[28px] l:text-[28px] xl:text-[28px]"
                 onClick={() => {
-                  navigate("https://lastazionepizzeria.pl/menu");
+                  navigate("/menu");
                 }}
               >
                 <p className="m-4">SPRAWDŹ NASZE MENU</p>
@@ -291,7 +291,7 @@ const data = postQuery.data
           </p>
           <p
             className="cursor-pointer sm:mb-4"
-            onClick={() => navigate("https://lastazionepizzeria.pl/menu")}
+            onClick={() => navigate("/menu")}
           >
             menu
           </p>
