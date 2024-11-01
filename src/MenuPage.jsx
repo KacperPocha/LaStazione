@@ -90,9 +90,8 @@ export const MenuPage = () => {
             <p>Zapraszamy do składania zamówień</p>
             <p>telefonicznie albo przez stronę pyszne.pl</p>
           </div>
-          <div className="text-white mt-8 flex sm:flex-col sm:items-center md:flex-row md:ml-6 l:ml-20">
+          <div className="text-white mt-8 flex sm:flex-col sm:items-center md:flex-row md:ml-6 l:ml-20" href="tel:572172272">
             <a
-              href="tel:+48 572 172 272"
               className="sm:text-[20px] md:text-[32px] font-semibold bg-[#343434] sm:pt-2 sm:pb-2 sm:pl-11 sm:pr-11 md:pt-4 md:pb-4 md:pl-6 md:pr-6 md:mr-12 l:pt-4 l:pb-4 l:pl-6 l:pr-6 l:mr-2 xl:pt-4 xl:pl-6 xl:pr-6 xl:mr-2 xl:ml-8 rounded-full "
             >
               +48 572 172 272
@@ -218,9 +217,9 @@ export const MenuPage = () => {
             COPYRIGHT 2024 © ALL RIGHTS RESERVED.
           </p>
         </div>
-        <div className="col-1 flex flex-col mt-8 md:ml-10 l:ml-36 xl:ml-56">
+        <div className="col-1 flex flex-col mt-8 md:ml-10 l:ml-36 xl:ml-56" href="tel:572172272">
           <div className="flex sm:justify-center">
-            <a className="flex" href="tel:572172272">
+            <a className="flex">
               <h1 className="md:text-[24px] l:text-[32px] xl:text-[32px]">
                 +48 572 172 272
               </h1>

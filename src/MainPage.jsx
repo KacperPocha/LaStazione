@@ -163,9 +163,9 @@ const data = postQuery.data
               </div>
             </div>
 
-            <button className="w-[277px] bg-[#343434] rounded-full text-white sm:mb-8 md:mb-8">
+            <button className="w-[277px] bg-[#343434] rounded-full text-white sm:mb-8 md:mb-8" href="tel:572172272">
               <div className="flex justify-center">
-                <a className="text-[18px] mt-2" href="tel:572172272">
+                <a className="text-[18px] mt-2">
                   <p className="font-black">ZADZWOŃ</p>
                   <p>+48 572 172 272</p>
                 </a>
@@ -307,10 +307,10 @@ const data = postQuery.data
             COPYRIGHT 2024 © ALL RIGHTS RESERVED.
           </p>
         </div>
-        <div className="col-1 flex flex-col mt-8 md:ml-10 l:ml-36 xl:ml-56">
+        <div className="col-1 flex flex-col mt-8 md:ml-10 l:ml-36 xl:ml-56" href="tel:572172272">
           <div className="flex sm:justify-center">
             <img src={Telephone} alt="telefon" className="mr-2" />
-            <a className="flex" href="tel:+48 572 172 272">
+            <a className="flex">
               <h1 className="md:text-[24px] l:text-[29px] xl:text-[32px]">
                 +48 572 172 272
               </h1>
