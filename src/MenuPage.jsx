@@ -220,7 +220,7 @@ export const MenuPage = () => {
         </div>
         <div className="col-1 flex flex-col mt-8 md:ml-10 l:ml-36 xl:ml-56">
           <div className="flex sm:justify-center">
-            <a className="flex" href="tel:+48 572 172 272">
+            <a className="flex" href="tel:572172272">
               <h1 className="md:text-[24px] l:text-[32px] xl:text-[32px]">
                 +48 572 172 272
               </h1>

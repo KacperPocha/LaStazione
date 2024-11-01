@@ -165,7 +165,7 @@ const data = postQuery.data
 
             <button className="w-[277px] bg-[#343434] rounded-full text-white sm:mb-8 md:mb-8">
               <div className="flex justify-center">
-                <a className="text-[18px] mt-2" href="tel:+48 527 172 27">
+                <a className="text-[18px] mt-2" href="tel:572172272">
                   <p className="font-black">ZADZWOŃ</p>
                   <p>+48 572 172 272</p>
                 </a>
