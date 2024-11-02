@@ -22,8 +22,7 @@ export const MainPage = () => {
       top: 0,
       behavior: "smooth",
     });
-  }; 
-
+  };
 
   const postQuery = useQuery({
     queryKey: ["hours"],
@@ -33,34 +32,33 @@ export const MainPage = () => {
   if (postQuery.isLoading) {
     return (
       <div className="w-screen h-screen bg-[#343434]">
-      <div className="col-span-2 flex flex-col justify-center items-center">
-        <h1 className="text-white text-[50px] text-center mt-24">
-          Wczytywanie...
-        </h1>
-        <img
-          src={LoadingPizza}
-          alt="Wczytywanie"
-          className="w-[250px] mx-auto animate-spin-slow "
-        />
-      </div>
+        <div className="col-span-2 flex flex-col justify-center items-center">
+          <h1 className="text-white text-[50px] text-center mt-24">
+            Wczytywanie...
+          </h1>
+          <img
+            src={LoadingPizza}
+            alt="Wczytywanie"
+            className="w-[250px] mx-auto animate-spin-slow "
+          />
+        </div>
       </div>
     );
   }
 
-  if(postQuery.isError){
+  if (postQuery.isError) {
     return (
       <div className="w-screen h-screen bg-[#343434]">
-      <div className="col-span-2 flex flex-col justify-center items-center">
-        <h1 className="text-white text-[50px] text-center mt-24">
-          {postQuery.error.message}
+        <div className="col-span-2 flex flex-col justify-center items-center">
+          <h1 className="text-white text-[50px] text-center mt-24">
+            {postQuery.error.message}
           </h1>
-      </div>
+        </div>
       </div>
     );
   }
 
-const data = postQuery.data
-
+  const data = postQuery.data;
 
   const Triangle = React.memo(({ color = "brown" }) => {
     return (
@@ -120,8 +118,12 @@ const data = postQuery.data
           alt="Logo"
           className="absolute sm:w-[20%] md:w-[20%] sm:top-[10%] md:top-[20%] l:top-[22%] xl:top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
-        <div>
-          <h1 className="text-[50px]">NIECZYNNE OD 31.10.2024 DO 13.11.2024</h1>
+        <div className="mt-12">
+          <h1 className="font-black sm:text-[30px] sm:mb-4 md:mb-4 md:text-[40px] l:text-[40px] xl:text-[40px] text-center mt-4 ml-12 mr-12">
+            Informujemy, że nasza pizzeria będzie zamknięta od 31 października
+            2024 do 13 listopada 2024. Przepraszamy za utrudnienia i zapraszamy
+            ponownie po przerwie!
+          </h1>
         </div>
       </div>
 
@@ -166,9 +168,9 @@ const data = postQuery.data
               </div>
             </div>
 
-            <button className="w-[277px] bg-[#343434] rounded-full text-white sm:mb-8 md:mb-8" href="tel:572172272">
+            <button className="w-[277px] bg-[#343434] rounded-full text-white sm:mb-8 md:mb-8">
               <div className="flex justify-center">
-                <a className="text-[18px] mt-2">
+                <a className="text-[18px] mt-2" href="tel:572172272">
                   <p className="font-black">ZADZWOŃ</p>
                   <p>+48 572 172 272</p>
                 </a>
@@ -226,56 +228,44 @@ const data = postQuery.data
           <h2 className="sm:text-[26px] md:text-[32px] l:text-[32px] xl:text-[32px]">
             ZAPRASZAMY:
           </h2>
-            <div className="flex flex-col items-center">
-              <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-                <p className="mr-2">poniedziałek:</p>
-                <p className="font-normal">
-                  {data.data[0].attributes.Poniedzialek}
-                </p>
-              </div>
-
-              <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-                <p className="mr-2">wtorek:</p>
-                <p className="font-normal">
-                  {data.data[0].attributes.Wtorek}
-                </p>
-              </div>
-
-              <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-                <p className="mr-2">środa:</p>
-                <p className="font-normal">
-                  {data.data[0].attributes.Sroda}
-                </p>
-              </div>
-
-              <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-                <p className="mr-2">czwartek:</p>
-                <p className="font-normal">
-                  {data.data[0].attributes.Czwartek}
-                </p>
-              </div>
-
-              <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-                <p className="mr-2">piątek:</p>
-                <p className="font-normal">
-                  {data.data[0].attributes.Piatek}
-                </p>
-              </div>
-
-              <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-                <p className="mr-2">sobota:</p>
-                <p className="font-normal">
-                  {data.data[0].attributes.Sobota}
-                </p>
-              </div>
-
-              <div className="text-center flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
-                <p className="mr-2">niedziela:</p>
-                <p className="font-normal">
-                  {data.data[0].attributes.Niedziela}
-                </p>
-              </div>
+          <div className="flex flex-col items-center">
+            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">poniedziałek:</p>
+              <p className="font-normal">
+                {data.data[0].attributes.Poniedzialek}
+              </p>
             </div>
+
+            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">wtorek:</p>
+              <p className="font-normal">{data.data[0].attributes.Wtorek}</p>
+            </div>
+
+            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">środa:</p>
+              <p className="font-normal">{data.data[0].attributes.Sroda}</p>
+            </div>
+
+            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">czwartek:</p>
+              <p className="font-normal">{data.data[0].attributes.Czwartek}</p>
+            </div>
+
+            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">piątek:</p>
+              <p className="font-normal">{data.data[0].attributes.Piatek}</p>
+            </div>
+
+            <div className="flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">sobota:</p>
+              <p className="font-normal">{data.data[0].attributes.Sobota}</p>
+            </div>
+
+            <div className="text-center flex sm:text-[20px] md:text-[24px] l:text-[24px] xl:text-[24px] font-semibold leading-[34px] mb-2">
+              <p className="mr-2">niedziela:</p>
+              <p className="font-normal">{data.data[0].attributes.Niedziela}</p>
+            </div>
+          </div>
         </div>
 
         <iframe
@@ -310,10 +300,10 @@ const data = postQuery.data
             COPYRIGHT 2024 © ALL RIGHTS RESERVED.
           </p>
         </div>
-        <div className="col-1 flex flex-col mt-8 md:ml-10 l:ml-36 xl:ml-56" href="tel:572172272">
+        <div className="col-1 flex flex-col mt-8 md:ml-10 l:ml-36 xl:ml-56">
           <div className="flex sm:justify-center">
             <img src={Telephone} alt="telefon" className="mr-2" />
-            <a className="flex">
+            <a className="flex" href="tel:572172272">
               <h1 className="md:text-[24px] l:text-[29px] xl:text-[32px]">
                 +48 572 172 272
               </h1>
