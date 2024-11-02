@@ -121,7 +121,7 @@ const data = postQuery.data
           className="absolute sm:w-[20%] md:w-[20%] sm:top-[10%] md:top-[20%] l:top-[22%] xl:top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
         <div>
-          <h1>NIECZYNNE OD 31.10.2024 DO 13.11.2024</h1>
+          <h1 className="text-[50px]">NIECZYNNE OD 31.10.2024 DO 13.11.2024</h1>
         </div>
       </div>
 
