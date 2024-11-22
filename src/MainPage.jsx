@@ -118,13 +118,6 @@ export const MainPage = () => {
           alt="Logo"
           className="absolute sm:w-[20%] md:w-[20%] sm:top-[10%] md:top-[20%] l:top-[22%] xl:top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
-        <div className="mt-12">
-          <h1 className="font-black sm:text-[30px] sm:mb-4 md:mb-4 md:text-[40px] l:text-[40px] xl:text-[40px] text-center mt-4 ml-12 mr-12">
-            Informujemy, że nasza pizzeria będzie zamknięta od 31 października
-            2024 do 13 listopada 2024. Przepraszamy za utrudnienia i zapraszamy
-            ponownie po przerwie!
-          </h1>
-        </div>
       </div>
 
       {/*SEKCJA POWITALNA*/}
