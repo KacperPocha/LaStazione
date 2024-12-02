@@ -119,7 +119,13 @@ export const MainPage = () => {
           className="absolute sm:w-[20%] md:w-[20%] sm:top-[10%] md:top-[20%] l:top-[22%] xl:top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
       </div>
-
+      <div className="mt-12">
+        <h1 className="font-black sm:text-[30px] sm:mb-4 md:mb-4 md:text-[40px] l:text-[40px] xl:text-[40px] text-center mt-4 ml-12 mr-12">
+          Informujemy, że nasza pizzeria będzie zamknięta 
+          od 1 grudnia 2024 do 31 grudnia 2024. 
+          Przepraszamy za utrudnienia i zapraszamy ponownie po przerwie!
+        </h1>
+      </div>
       {/*SEKCJA POWITALNA*/}
       <div className="grid mt-16 mb-16 sm:text-center md:text-center l:grid-cols-3 l:place-items-center l:ml-36 l:mr-36 xl:grid-cols-3 xl:place-items-center xl:ml-56 xl:mr-56">
         <div className="sm:col-span-1 l:col-span-2 xl:col-span-2 sm:ml-6 sm:mr-6 md:ml-12 md:mr-12 l:mr-12 xl:mr-16">
