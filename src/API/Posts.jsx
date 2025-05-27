@@ -1,5 +1,9 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
 
+
+console.log("API_KEY:", API_KEY);
+
+
 export async function fetchPizza() {
     const response = await fetch('https://api.lastazionepizzeria.pl/api/lastaziones?populate=*', {
         headers: { Authorization: `Bearer ${API_KEY}` }

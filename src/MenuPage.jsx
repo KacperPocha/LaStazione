@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchPizza} from "./API/Posts";
+import { fetchPizza } from "./API/Posts";
 import { Toppings } from "./Toppings";
 import React, { useMemo } from "react";
 import MenuTopSection from "./Images/MenuTopSection.png";
@@ -84,7 +84,7 @@ export const MenuPage = () => {
       </div>
 
       {/*SEKCJA ZAMÓWIENIA */}
-      <div className="sm:text-[25px] md:text-[35px] l:text-[35px] xl:text-[40px] font-semibold leading-[55px] flex justify-center text-center mt-24 mb-24 ml-2 mr-2">
+      <div className="sm:text-[25px] md:text-[35px] l:text-[35px] xl:text-[40px] font-semibold leading-[55px] flex justify-center text-center mt-24 mb-12 ml-2 mr-2">
         <div>
           <div>
             <p>Zapraszamy do składania zamówień</p>
@@ -111,6 +111,20 @@ export const MenuPage = () => {
               />
             </div>
           </div>
+          <div className="grid sm:text-[19px] md:text-[35px] l:text-[35px] xl:text-[40px] mt-4">
+            <p className="mt-6 mb-4 sm:text-[24px]">Posiadamy system naklejek!</p>
+            <div className="flex justify-center">
+              <p className="text-green-800 font-black mr-4">PIZZA 60</p><p>X 10 = 11 PIZZA GRATIS!</p>
+            </div>
+            <div className="flex justify-center">
+              <p className="text-red-600 font-black mr-4">PIZZA 45</p><p>X 10 = 11 PIZZA GRATIS!</p>
+            </div>
+            <div className="flex justify-center">
+              <p className="text-blue-900 font-black mr-4">PIZZA 32</p><p>X 10 = 11 PIZZA GRATIS!</p>
+            </div>
+            <p className="text-[15px]">*Z promocji można skorzystać tylko przy odbiorze osobistym</p>
+          </div>
+
         </div>
       </div>
 
@@ -120,7 +134,7 @@ export const MenuPage = () => {
           <TriangleRow color="#343434" triangleCount={47} />
         </div>
         <div className="bg-[#343434] mt-[-2px] flex-row justify-center w-full pb-12">
-        {isLoading ? (
+          {isLoading ? (
             <div className="col-span-2 flex flex-col justify-center items-center">
               <h1 className="text-white text-[20px] text-center mt-24">Wczytywanie menu...</h1>
               <img
