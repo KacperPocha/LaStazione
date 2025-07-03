@@ -119,7 +119,15 @@ export const MainPage = () => {
           className="absolute sm:w-[20%] md:w-[20%] sm:top-[10%] md:top-[20%] l:top-[22%] xl:top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
       </div>
-    
+
+
+      {/* KOMUNIKAT O ZAMKNIĘCIU */}
+      <div className="w-full bg-[#343434] text-center py-8 px-4 text-white mt-12">
+        <p className="text-2xl sm:text-xl md:text-xl font-semibold">
+          Drodzy Klienci! Nasza pizzeria jest <strong>zamknięta od 1 lipca do 31 lipca</strong>.<br />
+          Wracamy z nową energią i pyszną pizzą już <strong>1 sierpnia</strong>! 🍕❤️
+        </p>
+      </div>
       {/*SEKCJA POWITALNA*/}
       <div className="grid mt-16 mb-16 sm:text-center md:text-center l:grid-cols-3 l:place-items-center l:ml-36 l:mr-36 xl:grid-cols-3 xl:place-items-center xl:ml-56 xl:mr-56">
         <div className="sm:col-span-1 l:col-span-2 xl:col-span-2 sm:ml-6 sm:mr-6 md:ml-12 md:mr-12 l:mr-12 xl:mr-16">
