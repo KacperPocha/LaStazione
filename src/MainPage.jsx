@@ -124,8 +124,7 @@ export const MainPage = () => {
       {/* KOMUNIKAT O ZAMKNIĘCIU */}
       <div className="w-full bg-[#343434] text-center py-8 px-4 text-white mt-12">
         <p className="text-2xl sm:text-xl md:text-xl font-semibold">
-          Drodzy Klienci! Nasza pizzeria jest <strong>zamknięta od 1 lipca do 31 lipca</strong>.<br />
-          Wracamy z nową energią i pyszną pizzą już <strong>1 sierpnia</strong>! 🍕❤️
+          Wracamy z nową energią i pyszną pizzą już <strong>2 sierpnia</strong>! 🍕❤️
         </p>
       </div>
       {/*SEKCJA POWITALNA*/}
