@@ -127,7 +127,7 @@ export const MainPage = () => {
          {data.data[1].attributes.Poniedzialek}
         </p>
         <p className="text-2xl sm:text-lg md:text-xl font-semibold">
-          <strong>{data.data[1].attributes.Wtorek}</strong> ❄️🍕❤️
+          <strong>{data.data[1].attributes.Wtorek}</strong> ❄️❤️
         </p>
       </div>
       {/*SEKCJA POWITALNA*/}
