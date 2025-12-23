@@ -123,8 +123,11 @@ export const MainPage = () => {
 
       {/* KOMUNIKAT O ZAMKNIĘCIU */}
       <div className="w-full bg-[#343434] text-center py-8 px-4 text-white mt-12">
-        <p className="text-2xl sm:text-xl md:text-xl font-semibold">
-          W okresie zimowym jesteśmy dla was otwarci <strong>od czwartku do niedzieli!</strong> ❄️🍕❤️
+        <p className="text-2xl sm:text-lg md:text-xl font-semibold">
+         {data.data[1].attributes.Poniedzialek}
+        </p>
+        <p className="text-2xl sm:text-lg md:text-xl font-semibold">
+          <strong>{data.data[1].attributes.Wtorek}</strong> ❄️🍕❤️
         </p>
       </div>
       {/*SEKCJA POWITALNA*/}
